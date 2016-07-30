@@ -69,7 +69,14 @@ function checkBarcode(barcode){
                 return reg.test(element); //匹配有其他字符,数字，特殊字符等
             });
             if(!temp.includes(true)){
-                return barcode;
+                let codearr = barcode.substring(1,barcode.length-2);
+                let flag = _.chain(codearr).split('').chunk(5).map(item => item.join('')).map(n => _getBarcodes().includes(n)).value();
+                if(flag.includes(false)){
+                    return false;
+                }else{
+                    return barcode;
+                }
+
             }
         }
     }
@@ -81,7 +88,7 @@ function formatBarCode(barcode){
 function matchPostcode(barcode,allcodes){
     let temps = _.chunk(barcode.split(''),5);
     let newBarcodes =  temps.map((temp)=>{
-        return temp.join().replace(/,/g, "");
+        return temp.join('');
     });
     return newBarcodes.map((newbarcode)=>{
         let code = allcodes.find((code)=> code.code === newbarcode );
@@ -93,8 +100,10 @@ function getPostcodeString(postcode){
     if(codes.length === 9){
         codes.splice(5,0,'-');
     }
-    return codes.join().replace(/,/g, "");
+    return codes.join('');
 }
+let input = '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|';
+console.log(checkBarcode(input));
 module.exports = {
     checkPostCode:checkPostCode,
     formatPostCode:formatPostCode,
