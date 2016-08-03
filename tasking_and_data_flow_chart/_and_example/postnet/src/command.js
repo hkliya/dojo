@@ -80,6 +80,7 @@ function dealPostcodeToBarcode(){
         }
     };
 }
+
 module.exports = {
     getMenu,
     BarcodeToPostcode,

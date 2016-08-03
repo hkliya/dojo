@@ -33,7 +33,7 @@ function formatPostCode(postcode){
     return postcode;
 }
 function matchBarcodes(postcode,barcodes){
-    let postcodes = postcode.split('');
+    let postcodes = postcode.split("");
     let postcodesInt = postcodes.map((postcode)=>{
         return parseInt(postcode);
     });

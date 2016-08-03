@@ -1,5 +1,5 @@
 
-const repl = require('repl');
+const repl = require("repl");
 
 let {getMenu, BarcodeToPostcode, dealBarcodeToPostcode, PostcodeToBarcode, dealPostcodeToBarcode} = require('./command');
 let mapping = [getMenu(), BarcodeToPostcode(), dealBarcodeToPostcode(), PostcodeToBarcode(), dealPostcodeToBarcode()];
@@ -12,7 +12,7 @@ function handleCmd(cmd, context, filename, done) {
     }, done);
     done(null);
 }
-let replInfo = repl.start({prompt: "> ", eval: handleCmd})
+let replInfo = repl.start({prompt: "> ", eval: handleCmd});
 function switchRouter(context, done) {
     let route = mapping.find(item => item.name === status);
     let result = route.method(context.cmd);
