@@ -1,0 +1,19 @@
+{
+  "name": "zipBarcode",
+  "version": "1.0.0",
+  "description": "* <https://en.wikipedia.org/wiki/POSTNET> * <https://www.cs.drexel.edu/~introcs/Fa12/assignments/HW4/index.html> * <http://www.jiskha.com/>",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^2.4.1",
+    "lodash": "^4.14.0"
+  }
+}
