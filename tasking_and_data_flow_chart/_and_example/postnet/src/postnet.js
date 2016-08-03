@@ -33,26 +33,32 @@ function formatPostCode(postcode){
     return postcode;
 }
 function matchBarcodes(postcode,barcodes){
-    let postcodes = postcode.split('');
-    let postcodesInt = postcodes.map((postcode)=>{
-        return parseInt(postcode);
-    });
-    let sum = _.sum(postcodesInt);
-    if(sum % 10 === 0){
-        postcodes.push('0');
-    }else{
-        postcodes.push(parseFloat(10 - sum % 10 ));
+    if(postcode !== false){
+        let postcodes = postcode.split('');
+        let postcodesInt = postcodes.map((postcode)=>{
+            return parseInt(postcode);
+        });
+        let sum = _.sum(postcodesInt);
+        if(sum % 10 === 0){
+            postcodes.push('0');
+        }else{
+            postcodes.push(parseFloat(10 - sum % 10 ));
+        }
+        return postcodes.map((postcode)=>{
+            return  barcodes[parseInt(postcode)];
+        });
     }
-    return postcodes.map((postcode)=>{
-        return  barcodes[parseInt(postcode)];
-    });
+    return false;
 }
 function getBarcodeString(barcodes){
-    let barcodeString = '|';
-    let codesString = barcodes.join('');
-    barcodeString += codesString;
-    barcodeString += '|';
-    return barcodeString;
+    if(barcodes !== false){
+        let barcodeString = '|';
+        let codesString = barcodes.join('');
+        barcodeString += codesString;
+        barcodeString += '|';
+        return barcodeString;
+    }
+    return false;
 }
 function getPostToBar(postcode){
     let checkedcode = checkPostCode(postcode);
@@ -78,7 +84,6 @@ function checkBarcode(barcode){
 
             if(!temp.includes(true)){
                 let codearr = barcode.substring(1,barcode.length-2);
-                console.log(codearr)
                 let flag = _.chain(codearr).split('').chunk(5).map(item => item.join('')).map(n => _getBarcodes().includes(n)).value();
                 if(flag.includes(false)){
                     return false;
@@ -92,32 +97,41 @@ function checkBarcode(barcode){
     return false;
 }
 function formatBarCode(barcode){
-    return  barcode.substr(1,barcode.length-1);
+    if(barcode !== false){
+        return  barcode.substr(1,barcode.length-1);
+    }
+    return false;
 }
 function matchPostcode(barcode,allcodes){
-    let temps = _.chunk(barcode.split(''),5);
-    let newBarcodes =  temps.map((temp)=>{
-        return temp.join('');
-    });
-    return newBarcodes.map((newbarcode)=>{
-        let code = allcodes.find((code)=> code.code === newbarcode );
-        return code.no;
-    });
+    if(barcode !== false){
+        let temps = _.chunk(barcode.split(''),5);
+        let newBarcodes =  temps.map((temp)=>{
+            return temp.join('');
+        });
+        return newBarcodes.map((newbarcode)=>{
+            let code = allcodes.find((code)=> code.code === newbarcode );
+            return code.no;
+        });
+    }
+    return false;
 }
 function getPostcodeString(postcode){
-    let codes = _.dropRight(postcode);
-    if(codes.length === 9){
-        codes.splice(5,0,'-');
+    if(postcode !== false){
+        let codes = _.dropRight(postcode);
+        if(codes.length === 9){
+            codes.splice(5,0,'-');
+        }
+        return codes.join('');
     }
-    return codes.join('');
+    return false;
 }
 function getBarToPost(barcode){
     let checkedcode = checkBarcode(barcode);
-    console.log(checkedcode);
-    // let formattedcode = formatBarCode(checkedcode);
-    // let mattedcode = matchPostcode(formattedcode,getcodesObjects());
-    // let postcodeString = getPostcodeString(mattedcode);
-    // return postcodeString;
+    //console.log(checkedcode);
+    let formattedcode = formatBarCode(checkedcode);
+    let mattedcode = matchPostcode(formattedcode,getcodesObjects());
+    let postcodeString = getPostcodeString(mattedcode);
+    return postcodeString;
 }
 let input = '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|';
 console.log(getBarToPost(input));
