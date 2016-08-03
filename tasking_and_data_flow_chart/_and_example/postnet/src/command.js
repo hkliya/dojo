@@ -26,6 +26,8 @@ function BarcodeToPostcode(){
             switch (figure){
                 case '1':
                     return "dealbarcodetopostcode";
+                case '2':
+                    return "init";
                 default:
                     console.log("非法输入！请重新输入。。。");
                     return "init";
@@ -55,6 +57,8 @@ function PostcodeToBarcode(){
             switch (figure){
                 case '1':
                     return "dealbarcodetopostcode";
+                case '2':
+                    return "init";
                 default:
                     console.log("非法输入！请重新输入。。。");
                     return "init";
