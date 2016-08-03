@@ -191,131 +191,138 @@ describe('邮编转条码', () => {
   });
   it('should Barcode To Zip Code总测 7 29 以前',()=>{
     let input='45056-1234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     let expected=`|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|`;
     expect(result).toEqual(expected)
   });
 
   it('总测 5 位 正确',()=>{
     let input='95713';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     let expected='||:|:::|:|:|:::|:::||::||::|:|:|';
     expect(result).toEqual(expected)
   });
   it('总测 9位 正确',()=>{
     let input='450561234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+ //   let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     let expected=`|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|`;
     expect(result).toEqual(expected)
   });
   it('总测 10 位 正确',()=>{
     let input='45056-1234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+ //   let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     let expected=`|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|`;
     expect(result).toEqual(expected)
   });
   it('总测 4 位 错误',()=>{
     let input='1234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
 });
   it('总测 6 位 错误',()=>{
     let input='123456';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 8 位 错误',()=>{
     let input='12345678';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 11 位 错误',()=>{
     let input='12345678901';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
    });
 
 
   it('总测-的数量0 错误',()=>{
     let input='1234567890';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 -的数量1 正确',()=>{
     let input='45056-1234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+    //let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     let expected=`|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|`;
     expect(result).toEqual(expected)
   });
   it('总测 -的数量2 错误',()=>{
     let input='45056-123-';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 -的位置在5 错误',()=>{
     let input='4505-61234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 -的位置在6 错误',()=>{
     let input='450561-234';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
 
   it('总测   5位 特殊符号#  错误',()=>{
     let input='1234#';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测   9位 特殊符号#  错误',()=>{
     let input='12345#789';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+ //   let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测   10位 特殊符号#  错误',()=>{
     let input='12345#7890';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
    });
   it('总测 5位 字母 错误',()=>{
     let input='12a45';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 5位 字母 错误',()=>{
     let input='abced';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+   // let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
   it('总测 9位 字母 错误 ',()=>{
     let input='12345a789';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+  //  let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
-  it('总测 10 位 正确',()=>{
+  it('总测 10 位 错误',()=>{
     let input='12345-78Z0';
-    let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    let result=BarcodeToZipCode(input,codeArray);
+ //   let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
+    expect(result).toEqual(false)
+  });
+
+  it('总测 10 位 错误',()=>{
+    let input='12345-678';
+    //   let codeArray = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+    let result=BarcodeToZipCode(input);
     expect(result).toEqual(false)
   });
 
