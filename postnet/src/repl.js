@@ -12,7 +12,7 @@ function handleCmd(cmd, context, filename, done) {
 function switchRouter(context, done) {
     let result = route(context.cmd);
     console.log(result.text);
-    if(result.reture){
+    if(result.rerun){
         console.log(route().text);
     }
     done(null);
