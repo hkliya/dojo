@@ -14,7 +14,7 @@ function route(input) {
         mapping = defaultmapping;
         return {
             text: response.text,
-            reset: true
+            rerun: true
         }
     }
     if (response.newMapping) {
