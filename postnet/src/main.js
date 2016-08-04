@@ -1,10 +1,10 @@
 "use strict";
 
 let repl = require('repl');
-let route = require('./route');
+let Route = require('./route');
+let route = new Route();
 
-
-console.log(route().text);
+console.log(route.run().text);
 //用户输入
 function handleCmd(cmd, context, filename, done) {
     switchRoute({
@@ -13,15 +13,15 @@ function handleCmd(cmd, context, filename, done) {
     done(null);
 }
 function switchRoute(context, done) {
-    let result = route(context.cmd);
+    let result = route.run(context.cmd);
     console.log(result.text);
-    if(result.rerun){
-        console.log(route().text);
+    if (result.rerun) {
+        console.log(route.run().text);
     }
     done(null);
 }
 let repInfo = repl.start({
-    prompt: "> ",
+    prompt: "# ",
     eval: handleCmd
 });
 

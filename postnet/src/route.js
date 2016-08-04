@@ -1,43 +1,44 @@
 "use strict";
 
-let mainCommand = require('../commands/go-to-main-page');
+let GoToMainPageCommand = require('../commands/go-to-main-page-command');
+let RouteResponse = require('./route-response');
 
 let defaultMapping = {
-    "*": mainCommand
+    "*":new GoToMainPageCommand()
 };
 
-let mapping = defaultMapping;
-function route(input) {
-    let command = mapping[input] || mapping["*"];
-    let response = command(input);
-
-    if (response.reset) {
-        mapping = defaultMapping;
-        return {
-            text: response.text,
-            rerun: true
-        };
+class Route {
+    constructor() {
+        this.mapping = defaultMapping;
     }
 
-    if (response.error) {
-        return {
-            text: response.error
-        };
-    }
+    run(input) {
+        let command = this.mapping[input] || this.mapping["*"];
+        let response = command.run(input);
 
-    if (response.newMapping) {
-        mapping = response.newMapping;
-        return {
-            text:response.text
-        };
+        if (response.reset) {
+            this.mapping = defaultMapping;
+            return new RouteResponse({
+                text: response.text,
+                rerun: true
+            })
+        }
+
+        if (response.error) {
+            return new RouteResponse({
+                text:response.error
+            })
+        }
+
+        if (response.newMapping) {
+            this.mapping = response.newMapping;
+            return new RouteResponse({
+                text:response.text
+            })
+        }
+        return new RouteResponse({
+            text:reponse.text
+        })
     }
-    return {
-        text:response.text
-    };
 }
-
-module.exports = route;
-// console.log(route());
-// console.log(route('2'));
-// console.log(route('12354'));
-// console.log(route());
+module.exports = Route;
