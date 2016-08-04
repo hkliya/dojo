@@ -48,7 +48,7 @@ function matchBarcodes(postcode,barcodes){
             return  barcodes[parseInt(postcode)];
         });
     }
-    return false;
+  return false;
 }
 function getBarcodeString(barcodes){
     if(barcodes !== false){

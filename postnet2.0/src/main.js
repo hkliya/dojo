@@ -1,10 +1,11 @@
 /**
  * Created by SONY on 2016/8/3.
  */
-let route = require("./route");
+let Route = require("./route");
 const repl = require("repl");
 
-console.log(route().text);
+let route = new Route();
+console.log(route.do().text);
 //接受用户输入
 function handleCmd(cmd, context, filename, done) {
     switchRouter({
@@ -14,10 +15,10 @@ function handleCmd(cmd, context, filename, done) {
 }
 repl.start({prompt: "> ", eval: handleCmd});
 function switchRouter(context, done) {
-    let result = route(context.cmd);
+    let result = route.do(context.cmd);
     console.log(result.text);
     if(result.rerun){
-        console.log(route().text);
+        console.log(route.do().text);
     }
     done(null);
 }
