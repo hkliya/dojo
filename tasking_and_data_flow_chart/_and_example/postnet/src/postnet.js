@@ -133,7 +133,7 @@ function getBarToPost(barcode){
     let postcodeString = getPostcodeString(mattedcode);
     return postcodeString;
 }
-let input = '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|';
+let input = '|:::||::|:|::||::|::|:|:|::|:|:|';
 console.log(getBarToPost(input));
 module.exports = {
     checkPostCode:checkPostCode,
