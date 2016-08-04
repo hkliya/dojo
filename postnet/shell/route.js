@@ -32,8 +32,6 @@ function route(input) {
     }
 }
 
-module.exports = route;
-
 console.log(route().text);
 process.stdin.setEncoding('utf8');
 process.stdin.on('data', (input) => {
@@ -44,3 +42,5 @@ process.stdin.on('data', (input) => {
         console.log(route().text);
     }
 });
+
+module.exports = route;
